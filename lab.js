@@ -63,6 +63,7 @@ const favoriteThings = {
 //Code here
 favoriteThings.car = "Honda";
 favoriteThings.show = "The Simpsons";
+// console.log(favoriteThings);
 /*
   Now use bracket or dot notation to change the value of the food key in your favoriteThings object to be 
   'Chicken Nuggets'
@@ -91,7 +92,9 @@ var carDetails = {
 */
 
 //Code Here
-save;
+
+let { color, make, model, year } = carDetails;
+
 //////////////////////////// PROBLEM 7 ////////////////////////////
 
 /*
@@ -102,12 +105,13 @@ save;
 
 function greeting(obj) {
   //Code Here
-
+  let { firstName, lastName, title } = obj;
   // Do not edit the code below.
   return "Hello, " + title + " " + firstName + " " + lastName + "!";
   // Do not edit the code above.
 }
-
+console.log(greeting());
+//! COME BACK TO THIS
 //////////////////////////// PROBLEM 8 ////////////////////////////
 
 /*
@@ -119,8 +123,22 @@ function greeting(obj) {
 */
 
 //Code Here
+const obj = {
+  utah: 2,
+  california: 2,
+  texas: 1,
+  arizona: 1,
+};
+let { utah, california, texas, arizona } = obj;
 
-//////////////////////////// PROBLEM 9 ////////////////////////////
+function totalPopulation(obj) {
+  sum = utah + california + texas + arizona;
+  {
+    return sum;
+  }
+}
+// console.log(totalPopulation(obj));
+//////////////////// PROBLEM 9 ////////////////////////////
 
 /*
   Write a function called ingredients that will take in an object. 
@@ -132,6 +150,21 @@ function greeting(obj) {
 
 //Code Here
 
+function ingredients(diet) {
+  newArr.push(diet);
+  return newArr;
+}
+
+const diet = {
+  carb: "string1",
+  fat: "string2",
+  protein: "string3",
+};
+let { carb, fat, protein } = diet;
+
+let newArr = [];
+
+// console.log(ingredients(diet));
 //////////////////////////// PROBLEM 10 ////////////////////////////
 // Do not edit the code below.
 var user = {
@@ -149,7 +182,6 @@ var user = {
   name -> 'Bryan G. Smith' and email -> 'bryan.smith@devmounta.in'.
   Make that change without modifying the original object code above.
 */
-
 //Code Here
 
 //////////////////////////// PROBLEM 11 ////////////////////////////
