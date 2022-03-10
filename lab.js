@@ -4,6 +4,8 @@
   Give it a key of name with the value being your name, and another key of age with the value being your age.
 */
 
+const { copyFile } = require("fs");
+
 //Code here
 const me = {
   name: "Tevin",
@@ -103,14 +105,16 @@ let { color, make, model, year } = carDetails;
   The property names are firstName, lastName, and title.
 */
 
-function greeting(obj) {
-  //Code Here
-  let { firstName, lastName, title } = obj;
-  // Do not edit the code below.
-  return "Hello, " + title + " " + firstName + " " + lastName + "!";
-  // Do not edit the code above.
-}
-console.log(greeting());
+// function greeting(obj) {
+//   //Code Here
+//   const { title, firstName, lastName } = greeting(obj);
+//   // Do not edit the code below.
+//   return "Hello, " + title + " " + firstName + " " + lastName + "!";
+//   // Do not edit the code above.
+// }
+// console.log(greeting(obj));
+
+// !
 //! COME BACK TO THIS
 //////////////////////////// PROBLEM 8 ////////////////////////////
 
@@ -184,13 +188,23 @@ var user = {
 */
 //Code Here
 
+const { name, email, ...deletedName } = user;
+
+const addedUser = {
+  ...deletedName,
+  name: "Bryan G. Smith",
+  email: "bryan.smith@devmounta.in",
+};
+// console.log(addedUser);
+
 //////////////////////////// PROBLEM 11 ////////////////////////////
 /*
   Using the user object above, delete the users age off of the object.
 */
 
 //Code Here
-
+const { age, ...deletedAge } = user;
+// console.log(deletedAge);
 //////////////////////////// PROBLEM 12 ////////////////////////////
 /*
   Create a class called 'Cat'. Make sure to call your constructor, and require these 3 parameters: name, age, color.
@@ -199,6 +213,20 @@ var user = {
 */
 
 //Code here
+
+class Cat {
+  constructor(name, age, color) {
+    this.name = name;
+    this.age = age;
+    this.color = color;
+  }
+  meow() {
+    console.log("Meow Meow", this.name, "MEEOWW!!");
+  }
+}
+let cat1 = new Cat("Prrrr", 2, "black");
+
+cat1.meow();
 
 //////////////////////////// PROBLEM 13 ////////////////////////////
 /*
@@ -209,6 +237,18 @@ var user = {
 */
 
 //Code here
+class Wizard {
+  constructor(name, age, favoriteSpell) {
+    (this.name = name), (this.age = age), (this.favoriteSpell = favoriteSpell);
+  }
+  castSpell() {
+    console.log(this.name, "has cast", this.favoriteSpell);
+  }
+}
+
+let wizard1 = new Wizard("Tevin", 25, "oogetty boogetty");
+
+wizard1.castSpell();
 
 //////////////////////////// PROBLEM 14 ////////////////////////////
 /*
@@ -235,6 +275,24 @@ var user = {
 
 //Code Here
 
+class Phone {
+  constructor(brand, model, storage, color, price, sold) {
+    (this.brand = brand),
+      (this.model = model),
+      (this.storage = storage),
+      (this.color = color),
+      (this.price = price),
+      (this.sold = false);
+  }
+  sell() {
+    this.sold = true;
+    console.log(this.brand, this.model, "has been sold.");
+  }
+  changePrice(newPrice) {
+    this.price = newPrice;
+  }
+}
+
 /*
     Next make three new phone instances using your class.
     Send in values of your choice. They should match these data types:
@@ -247,6 +305,16 @@ var user = {
 
 //Code Here
 
+let phone1 = new Phone("Off brand", "Mokia", 100, "black", 29.99);
+let phone2 = new Phone("Apple", "Pear", 150, "black", 1399.99);
+let phone3 = new Phone(
+  "Samsung",
+  "Note Ultimate Ultra 8k Super Edge Lite",
+  100,
+  "white",
+  799.99
+);
+
 /* 
   Call the changePrice function on one of your phones, 
   don't forget to pass in a new price 
@@ -255,7 +323,8 @@ var user = {
 */
 
 //Code Here
-
+phone3.changePrice(849.99);
+// console.log(phone3);
 /*
   Now call the sell method on one of your other phone objects
 
@@ -263,13 +332,16 @@ var user = {
 */
 
 //Code Here
+phone1.sell(true);
+// console.log(phone1.sold);
 
 //////////////////////////// PROBLEM 15 ////////////////////////////
 
 /*
   Use the spread operator to create a copy of the colors object below.
   Store the copy in a variable called colorsCopy.
-  Note: We did not cover the spread operator in class. We do not expect you to know how to use it. Challenge yourself by going online and researching what the spread operator is and how to use it.
+  Note: We did not cover the spread operator in class. We do not expect you to know how to use it.
+   Challenge yourself by going online and researching what the spread operator is and how to use it.
 */
 
 //do not edit this object
@@ -281,6 +353,10 @@ const colors = {
 //do not edit this object
 
 //Code Here
+
+const colorsCopy = { ...colors };
+
+// console.log(colorsCopy);
 
 /*
  Now use the spread operator to combine the following 2 objects into one. 
@@ -307,7 +383,8 @@ const shippingInfo = {
 //do not edit the objects above
 
 //Code Here
-
+const helensInfo = { ...contactInfo, ...shippingInfo };
+// console.log(helensInfo);
 //Print helensInfo to see what it looks like, there should be no repeating properties.
 
 //////////////////////////// PROBLEM 16 ////////////////////////////
@@ -324,11 +401,22 @@ const shippingInfo = {
 
 //Code Here
 
+class Vehicle {
+  constructor(capacity, color, mileage) {
+    (this.capacity = capacity), (this.color = color), (this.mileage = mileage);
+  }
+  move(miles) {
+    console.log(miles + Vehicle.mileage);
+  }
+}
+
 /*
   Create a vehicle using your new class and save it to a variable called myFirstVehicle
 */
 
 //Code Here
+
+let myFirstVehicle = new Vehicle();
 
 /* 
   Now we'll create a class that's based off of the vehicle class. 
@@ -339,16 +427,22 @@ const shippingInfo = {
 */
 
 //Code Here
-
+class Motorcycle extends Vehicle {
+  constructor(capacity, color, mileage, make, isCool) {
+    super(make, isCool);
+  }
+}
 /*
   Create a Motorcycle using your new class and save it to a variable called myFirstMotorcycle
 */
 
 //Code Here
-
+let myFirstMotorcycle = new Motorcycle(2, "black", 35, "Honda", "isCool");
 /*
   Call the move function on myFirstMotorcycle (don't forget the parameter)
 */
+//? Code Here
+myFirstMotorcycle.move(25);
 
 /*
   Let's make another class based off of Vehicle. 
@@ -368,25 +462,49 @@ const shippingInfo = {
 
 //Code Here
 
+class Boat extends Vehicle {
+  constructor(capacity, color, mileage, name, type, isSeaworthy) {
+    super(color, capacity, name);
+    function checkSeaworthiness(sea) {
+      if ((Boat.isSeaworthy = true)) {
+        console.log("The", { color }, { type }, { name }, " is seaworthy!");
+      }
+      if ((Boat.isSeaworthy = false)) {
+        console.log("You need to get your ", { type }, " in shape!");
+      }
+    }
+    function performMaintenance() {
+      let isSeaworthy = true;
+    }
+  }
+}
+
 /*
   Create a new boat using your class. You can choose whatever values you like for all the 
   properties except isSeaworthy -- make that one false. Call your variable myFirstBoat.
 */
 
 //Code Here
-
+let myFirstBoat = new Boat(
+  (capacity = 2),
+  (color = "black"),
+  (mileage = 2),
+  (name = "toofast"),
+  (type = "yatch"),
+  (isSeaworthy = false)
+);
 /*
   Call the checkSeaworthiness method on your new boat
 */
 
 //Code Here
-
+// console.log(myFirstBoat.checkSeaworthiness);
 /*
   Now run the performMaintenance method on your boat
 */
 
 //Code Here
-
+myFirstBoat.performMaintenance();
 /*
   Check the seaworthiness once more (you should be ready for the water!)
 */
